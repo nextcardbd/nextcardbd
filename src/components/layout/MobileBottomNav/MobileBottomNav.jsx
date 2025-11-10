@@ -4,8 +4,8 @@
 
 /* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
 
-import React, { useEffect, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FaHome, FaThList, FaShoppingCart, FaUser } from 'react-icons/fa';
 import { useCart } from '../../../store/CartContext';
@@ -15,32 +15,30 @@ import './MobileBottomNav.css';
 const MobileBottomNav = () => {
   const { t } = useTranslation();
   const { cartCount: rawCount } = useCart();
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth?.() || {};
+  const navigate = useNavigate();
 
-  // Normalize cart count
   const cartCount = Number.isFinite(Number(rawCount)) ? Number(rawCount) : 0;
 
-  // Role-aware account route
-  const accountLink = isAuthenticated
-    ? (user?.role === 'admin' ? '/admin/dashboard' : '/dashboard')
-    : '/login';
+  // Profile popover
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
 
-  // Bounce animation on cartCount change
-  const badgeRef = useRef(null);
   useEffect(() => {
-    if (!badgeRef.current) return;
-    if (cartCount > 0) {
-      badgeRef.current.classList.remove('badge-bounce');
-      // reflow to restart animation
-      // eslint-disable-next-line no-unused-expressions
-      badgeRef.current.offsetHeight;
-      badgeRef.current.classList.add('badge-bounce');
-    }
-  }, [cartCount]);
+    const onDocClick = (e) => {
+      if (!menuRef.current) return;
+      if (!menuRef.current.contains(e.target)) setMenuOpen(false);
+    };
+    document.addEventListener('click', onDocClick);
+    return () => document.removeEventListener('click', onDocClick);
+  }, []);
 
-  // Util: NavLink class with active state
-  const linkClass = ({ isActive }) =>
-    `mobile-nav-item ${isActive ? 'is-active' : ''}`;
+  const linkClass = ({ isActive }) => `mobile-nav-item ${isActive ? 'is-active' : ''}`;
+
+  const go = (path) => {
+    setMenuOpen(false);
+    navigate(path);
+  };
 
   return (
     <nav className="mobile-bottom-nav" aria-label="Primary">
@@ -51,8 +49,8 @@ const MobileBottomNav = () => {
         <i className="active-underline" aria-hidden />
       </NavLink>
 
-      {/* Categories */}
-      <NavLink to="/products" className={linkClass} aria-label={t('bottom_nav.categories')}>
+      {/* Categories: all categories page */}
+      <NavLink to="/categories" className={linkClass} aria-label={t('bottom_nav.categories')}>
         <FaThList size={20} className="nav-icon" />
         <span className="nav-label">{t('bottom_nav.categories')}</span>
         <i className="active-underline" aria-hidden />
@@ -63,21 +61,70 @@ const MobileBottomNav = () => {
         <div className="cart-icon-wrapper">
           <FaShoppingCart size={20} className="nav-icon" />
           {cartCount > 0 && (
-            <span ref={badgeRef} className="mobile-cart-badge" aria-label={`${cartCount} items in cart`}>
-              {cartCount > 99 ? '99+' : cartCount}
-            </span>
+            <span className="mobile-cart-badge">{cartCount > 99 ? '99+' : cartCount}</span>
           )}
         </div>
         <span className="nav-label">{t('bottom_nav.cart')}</span>
         <i className="active-underline" aria-hidden />
       </NavLink>
 
-      {/* Account (Login/Dashboard/Admin) */}
-      <NavLink to={accountLink} className={linkClass} aria-label={t('bottom_nav.account')}>
-        <FaUser size={20} className="nav-icon" />
-        <span className="nav-label">{t('bottom_nav.account')}</span>
-        <i className="active-underline" aria-hidden />
-      </NavLink>
+      {/* Profile (native menu inside) */}
+      <div className="mobile-nav-item profile-root" ref={menuRef}>
+        <button
+          className="profile-trigger"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-expanded={menuOpen}
+          aria-haspopup="menu"
+          aria-label={t('bottom_nav.account')}
+        >
+          <FaUser size={20} className="nav-icon" />
+          <span className="nav-label">{t('bottom_nav.account')}</span>
+          <i className="active-underline" aria-hidden />
+        </button>
+
+        {menuOpen && (
+          <div className="profile-popover" role="menu">
+            {isAuthenticated ? (
+              <>
+                {user?.role === 'admin' && (
+                  <button className="profile-item" onClick={() => go('/admin/dashboard')} role="menuitem">
+                    {t('profile_nav.admin_dashboard', 'Admin Dashboard')}
+                  </button>
+                )}
+                <button className="profile-item" onClick={() => go('/dashboard')} role="menuitem">
+                  {t('profile_nav.dashboard', 'Dashboard')}
+                </button>
+                <button className="profile-item" onClick={() => go('/dashboard/orders')} role="menuitem">
+                  {t('profile_nav.orders', 'My Orders')}
+                </button>
+                <button className="profile-item" onClick={() => go('/dashboard/profile')} role="menuitem">
+                  {t('profile_nav.profile', 'Profile')}
+                </button>
+                <button
+                  className="profile-item danger"
+                  onClick={() => {
+                    logout?.();
+                    setMenuOpen(false);
+                    navigate('/login');
+                  }}
+                  role="menuitem"
+                >
+                  {t('auth.logout', 'Logout')}
+                </button>
+              </>
+            ) : (
+              <>
+                <button className="profile-item" onClick={() => go('/login')} role="menuitem">
+                  {t('auth.login', 'Login')}
+                </button>
+                <button className="profile-item" onClick={() => go('/register')} role="menuitem">
+                  {t('auth.register', 'Register')}
+                </button>
+              </>
+            )}
+          </div>
+        )}
+      </div>
     </nav>
   );
 };
