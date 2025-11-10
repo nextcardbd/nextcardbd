@@ -10,6 +10,7 @@ import Header from './components/layout/Header/Header';
 import CategoryBar from './components/layout/CategoryBar/CategoryBar';
 import AuthHeader from './components/layout/AuthHeader/AuthHeader';
 import Footer from './components/layout/Footer/Footer';
+import MobileBottomNav from './components/layout/MobileBottomNav/MobileBottomNav';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import AdminProtectedRoute from './components/common/AdminProtectedRoute';
 
@@ -24,7 +25,7 @@ import RegisterPage from './pages/Auth/RegisterPage';
 import OrderSuccessPage from './pages/Public/OrderSuccessPage';
 import UserDashboardPage from './pages/User/DashboardPage';
 
-// --- NEW: Import Static Pages ---
+// --- Import Static Pages ---
 import ContactPage from './pages/Public/ContactPage';
 import FAQPage from './pages/Public/FAQPage';
 import { ShippingPolicyPage, ReturnPolicyPage } from './pages/Public/PolicyPage';
@@ -39,6 +40,7 @@ import AdminAddProduct from './pages/Admin/AdminAddProduct';
 import AdminEditProduct from './pages/Admin/AdminEditProduct';
 import AdminCategoryManagement from './pages/Admin/AdminCategoryManagement';
 
+// Placeholder Components
 const AdminUserManagement = () => <h2>User Management (To be built)</h2>;
 const AdminSettings = () => <h2>Settings (To be built)</h2>;
 const NotFoundPage = () => <h2>404 - Page Not Found</h2>;
@@ -51,6 +53,9 @@ function ScrollToTop() {
   return null;
 }
 
+/**
+ * This component decides which layout to render for Public routes.
+ */
 const PublicLayoutWrapper = () => {
   const location = useLocation();
   const { pathname } = location;
@@ -64,6 +69,7 @@ const PublicLayoutWrapper = () => {
   );
 };
 
+// --- FINAL App.jsx structure ---
 function App() {
   const { i18n } = useTranslation();
   useEffect(() => {
@@ -82,6 +88,7 @@ function App() {
               <PublicLayoutWrapper />
               <main className="main-content"><Outlet /></main>
               <Footer />
+              <MobileBottomNav /> {/* Add Mobile Nav here */}
             </>
           }
         >
@@ -93,7 +100,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/order-success" element={<OrderSuccessPage />} />
           
-          {/* --- NEW: Static Page Routes --- */}
+          {/* Static Page Routes */}
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/shipping-policy" element={<ShippingPolicyPage />} />
@@ -119,6 +126,7 @@ function App() {
             </AdminProtectedRoute>
           }
         >
+          {/* Nested Admin Routes */}
           <Route index element={<AdminDashboard />} /> 
           <Route path="orders" element={<AdminOrderManagement />} />
           <Route path="products" element={<AdminProductManagement />} />
