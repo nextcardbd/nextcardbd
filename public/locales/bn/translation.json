@@ -131,6 +131,7 @@
   },
   "admin_page": {
     "login_title": "অ্যাডমিন প্যানেল লগইন",
+    "secret_key_label": "অ্যাডমিন সিক্রেট কী",
     "dashboard_title": "ড্যাশবোর্ড ওভারভিউ",
     "nav_dashboard": "ড্যাশবোর্ড",
     "nav_orders": "অর্ডারসমূহ",
@@ -176,6 +177,21 @@
     "desc_bn": "বিবরণ (BN)",
     "select_subcategory": "সাবক্যাটাগরি সিলেক্ট করুন"
   },
+  "static_pages": {
+    "contact_title": "যোগাযোগ করুন",
+    "contact_subtitle": "আমাদের সাথে যোগাযোগ করুন। আমরা আপনাকে সাহায্য করার জন্য এখানে আছি।",
+    "contact_form_title": "আমাদের বার্তা পাঠান",
+    "form_name": "আপনার নাম",
+    "form_email": "আপনার ইমেইল",
+    "form_subject": "বিষয়",
+    "form_message": "বার্তা",
+    "form_send_button": "বার্তা পাঠান",
+    "contact_info_title": "যোগাযোগের তথ্য",
+    "contact_address": "খুলনা, বাংলাদেশ",
+    "faq_title": "সাধারণ জিজ্ঞাসা",
+    "shipping_policy_title": "শিপিং পলিসি",
+    "return_policy_title": "রিটার্ন ও রিফান্ড পলিসি"
+  },
   "footer": {
     "about": "আমাদের সম্পর্কে",
     "about_text": "নেক্সটকার্টবিডি হলো বাংলাদেশের সেরা পণ্যগুলির জন্য আপনার ওয়ান-স্টপ শপ।",
@@ -184,7 +200,7 @@
       "home": "হোম",
       "shop": "শপ",
       "cart": "কার্ট",
-      "contact": "যোগাযোগ"
+      "contact": "যোগাযোগ করুন"
     },
     "service": "সার্ভিস",
     "service_links": {
@@ -195,8 +211,8 @@
     "contact": "যোগাযোগ",
     "contact_info": {
       "address": "খুলনা, বাংলাদেশ",
-      "email": "support@nexcartbd.com",
-      "phone": "+৮৮০ ১২৩ ৪৫৬ ৭৮৯"
+      "email": "info@mahinltd.tech",
+      "phone": "01836171236"
     },
     "copyright": "© নেক্সটকার্টবিডি — ডেভেলপড বাই মাহিন লিমিটেড (তানভীর)",
     "pay_with": "পেমেন্ট করুন:",

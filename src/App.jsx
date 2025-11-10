@@ -24,6 +24,11 @@ import RegisterPage from './pages/Auth/RegisterPage';
 import OrderSuccessPage from './pages/Public/OrderSuccessPage';
 import UserDashboardPage from './pages/User/DashboardPage';
 
+// --- NEW: Import Static Pages ---
+import ContactPage from './pages/Public/ContactPage';
+import FAQPage from './pages/Public/FAQPage';
+import { ShippingPolicyPage, ReturnPolicyPage } from './pages/Public/PolicyPage';
+
 // --- Import Admin Page Components ---
 import AdminLogin from './pages/Admin/AdminLogin';
 import AdminLayout from './pages/Admin/AdminLayout';
@@ -31,10 +36,9 @@ import AdminDashboard from './pages/Admin/AdminDashboard';
 import AdminOrderManagement from './pages/Admin/AdminOrderManagement';
 import AdminProductManagement from './pages/Admin/AdminProductManagement';
 import AdminAddProduct from './pages/Admin/AdminAddProduct';
-import AdminEditProduct from './pages/Admin/AdminEditProduct'; // Edit Page
+import AdminEditProduct from './pages/Admin/AdminEditProduct';
 import AdminCategoryManagement from './pages/Admin/AdminCategoryManagement';
 
-// Placeholder Components
 const AdminUserManagement = () => <h2>User Management (To be built)</h2>;
 const AdminSettings = () => <h2>Settings (To be built)</h2>;
 const NotFoundPage = () => <h2>404 - Page Not Found</h2>;
@@ -47,9 +51,6 @@ function ScrollToTop() {
   return null;
 }
 
-/**
- * This component decides which layout to render for Public routes.
- */
 const PublicLayoutWrapper = () => {
   const location = useLocation();
   const { pathname } = location;
@@ -63,7 +64,6 @@ const PublicLayoutWrapper = () => {
   );
 };
 
-// --- FINAL App.jsx structure ---
 function App() {
   const { i18n } = useTranslation();
   useEffect(() => {
@@ -92,6 +92,13 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/order-success" element={<OrderSuccessPage />} />
+          
+          {/* --- NEW: Static Page Routes --- */}
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/faq" element={<FAQPage />} />
+          <Route path="/shipping-policy" element={<ShippingPolicyPage />} />
+          <Route path="/return-policy" element={<ReturnPolicyPage />} />
+          
           <Route 
             path="/checkout" 
             element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} 
@@ -112,7 +119,6 @@ function App() {
             </AdminProtectedRoute>
           }
         >
-          {/* Nested Admin Routes */}
           <Route index element={<AdminDashboard />} /> 
           <Route path="orders" element={<AdminOrderManagement />} />
           <Route path="products" element={<AdminProductManagement />} />

@@ -5,8 +5,8 @@ import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   FaFacebook,
-  FaTwitter,
-  FaInstagram,
+  FaTiktok, // 1. Import FaTiktok
+  FaInstagram, // Keep Instagram for now, or remove if you are sure
   FaArrowUp,
 } from 'react-icons/fa';
 import './Footer.css';
@@ -30,17 +30,29 @@ const Footer = () => {
             NextCart<span>BD</span>
           </h3>
           <p>{t('footer.about_text')}</p>
+          
+          {/* --- UPDATED: Social Icons --- */}
           <div className="social-icons">
-            <a href="#" aria-label="Facebook">
+            <a 
+              href="https://www.facebook.com/share/1DckEHmwPM/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Facebook"
+            >
               <FaFacebook />
             </a>
-            <a href="#" aria-label="Twitter">
-              <FaTwitter />
+            <a 
+              href="https://www.tiktok.com/@nextcardbd?_r=1&_t=ZS-91H65YaJtR7" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="TikTok"
+            >
+              <FaTiktok />
             </a>
-            <a href="#" aria-label="Instagram">
-              <FaInstagram />
-            </a>
+            {/* Instagram link removed as requested */}
           </div>
+          {/* --- END OF UPDATE --- */}
+
         </div>
 
         {/* Column 2: Quick Links */}
@@ -51,7 +63,7 @@ const Footer = () => {
               <NavLink to="/">{t('footer.links.home')}</NavLink>
             </li>
             <li>
-              <NavLink to="/shop">{t('footer.links.shop')}</NavLink>
+              <NavLink to="/products">{t('footer.links.shop')}</NavLink>
             </li>
             <li>
               <NavLink to="/cart">{t('footer.links.cart')}</NavLink>
@@ -96,7 +108,6 @@ const Footer = () => {
         <p className="copyright">{t('footer.copyright')}</p>
         <div className="payment-icons">
           <span>{t('footer.pay_with')}</span>
-          {/* Using text placeholders from translation files */}
           <span className="payment-placeholder bkash">
             {t('footer.payment_methods.bkash')}
           </span>

@@ -137,6 +137,7 @@
   },
   "admin_page": {
     "login_title": "Admin Panel Login",
+    "secret_key_label": "Admin Secret Key",
     "dashboard_title": "Dashboard Overview",
     "nav_dashboard": "Dashboard",
     "nav_orders": "Orders",
@@ -182,6 +183,21 @@
     "desc_bn": "Description (BN)",
     "select_subcategory": "Select Subcategory"
   },
+  "static_pages": {
+    "contact_title": "Contact Us",
+    "contact_subtitle": "Get in touch with us. We are here to help you.",
+    "contact_form_title": "Send us a Message",
+    "form_name": "Your Name",
+    "form_email": "Your Email",
+    "form_subject": "Subject",
+    "form_message": "Message",
+    "form_send_button": "Send Message",
+    "contact_info_title": "Contact Information",
+    "contact_address": "Khulna, Bangladesh",
+    "faq_title": "Frequently Asked Questions",
+    "shipping_policy_title": "Shipping Policy",
+    "return_policy_title": "Return & Refund Policy"
+  },
   "footer": {
     "about": "About Us",
     "about_text": "NexCartBD is your one-stop shop for the best products in Bangladesh.",
@@ -201,8 +217,8 @@
     "contact": "Contact",
     "contact_info": {
       "address": "Khulna, Bangladesh",
-      "email": "support@nexcartbd.com",
-      "phone": "+880 123 456 789"
+      "email": "info@mahinltd.tech",
+      "phone": "01836171236"
     },
     "copyright": "© NexCartBD — Developed by Mahin Ltd (Tanvir)",
     "pay_with": "Pay With:",
