@@ -1,6 +1,6 @@
 /* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react'; // 1. Import useState
 import { Routes, Route, useLocation, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './App.css';
@@ -13,6 +13,7 @@ import Footer from './components/layout/Footer/Footer';
 import MobileBottomNav from './components/layout/MobileBottomNav/MobileBottomNav';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import AdminProtectedRoute from './components/common/AdminProtectedRoute';
+import CategoryDrawer from './components/common/CategoryDrawer/CategoryDrawer'; // 2. Import Drawer
 
 // --- Import Page Components ---
 import HomePage from './pages/Public/HomePage';
@@ -40,7 +41,6 @@ import AdminAddProduct from './pages/Admin/AdminAddProduct';
 import AdminEditProduct from './pages/Admin/AdminEditProduct';
 import AdminCategoryManagement from './pages/Admin/AdminCategoryManagement';
 
-// Placeholder Components
 const AdminUserManagement = () => <h2>User Management (To be built)</h2>;
 const AdminSettings = () => <h2>Settings (To be built)</h2>;
 const NotFoundPage = () => <h2>404 - Page Not Found</h2>;
@@ -53,9 +53,6 @@ function ScrollToTop() {
   return null;
 }
 
-/**
- * This component decides which layout to render for Public routes.
- */
 const PublicLayoutWrapper = () => {
   const location = useLocation();
   const { pathname } = location;
@@ -69,9 +66,12 @@ const PublicLayoutWrapper = () => {
   );
 };
 
-// --- FINAL App.jsx structure ---
 function App() {
   const { i18n } = useTranslation();
+  
+  // 3. State for controlling the category drawer
+  const [isCategoryDrawerOpen, setIsCategoryDrawerOpen] = useState(false);
+  
   useEffect(() => {
     document.documentElement.lang = i18n.language;
   }, [i18n.language]);
@@ -88,7 +88,12 @@ function App() {
               <PublicLayoutWrapper />
               <main className="main-content"><Outlet /></main>
               <Footer />
-              <MobileBottomNav /> {/* Add Mobile Nav here */}
+              {/* 4. Pass the click handler to the nav, render the drawer */}
+              <MobileBottomNav onCategoryClick={() => setIsCategoryDrawerOpen(true)} />
+              <CategoryDrawer 
+                isOpen={isCategoryDrawerOpen} 
+                onClose={() => setIsCategoryDrawerOpen(false)} 
+              />
             </>
           }
         >
@@ -100,7 +105,6 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/order-success" element={<OrderSuccessPage />} />
           
-          {/* Static Page Routes */}
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/shipping-policy" element={<ShippingPolicyPage />} />
@@ -126,7 +130,6 @@ function App() {
             </AdminProtectedRoute>
           }
         >
-          {/* Nested Admin Routes */}
           <Route index element={<AdminDashboard />} /> 
           <Route path="orders" element={<AdminOrderManagement />} />
           <Route path="products" element={<AdminProductManagement />} />

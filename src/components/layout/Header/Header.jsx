@@ -1,6 +1,6 @@
 /* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -17,38 +17,31 @@ import './Header.css';
 
 import { useCart } from '../../../store/CartContext';
 import { useAuth } from '../../../store/AuthContext';
+// 1. Import the new LanguageToggle component
+import LanguageToggle from '../../common/LanguageToggle/LanguageToggle';
 
 const Header = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation(); // Keep this for the search placeholder
   const navigate = useNavigate();
   const { cartCount } = useCart();
   const { isAuthenticated, user, logout } = useAuth();
 
-  // REMOVED: isSticky state (now handled by CSS)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  
-  // --- NEW: State for Search ---
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Language toggle function
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'bn' : 'en';
-    i18n.changeLanguage(newLang);
-    setIsMobileMenuOpen(false);
-  };
+  // 2. REMOVED: toggleLanguage function (now inside LanguageToggle)
 
-  // --- NEW: Handle Search Submit ---
   const handleSearchSubmit = (e) => {
-    e.preventDefault(); // Stop form from reloading page
+    e.preventDefault();
     if (searchTerm.trim()) {
       navigate(`/products?search=${searchTerm.trim()}`);
-      setSearchTerm(''); // Clear search bar after submit
-      setIsMobileMenuOpen(false); // Close mobile menu if open
+      setSearchTerm('');
+      setIsMobileMenuOpen(false);
     }
   };
 
-  // REMOVED: useEffect for sticky header
+  // REMOVED: isSticky logic (now handled by CSS)
 
   const handleLogout = () => {
     logout();
@@ -57,7 +50,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header"> {/* REMOVED: sticky class logic */}
+    <header className="header">
       <div className="header-container">
         <div className="header-logo">
           <NavLink to="/">
@@ -65,7 +58,7 @@ const Header = () => {
           </NavLink>
         </div>
 
-        {/* --- UPDATED: Search Bar is now a form --- */}
+        {/* Search Bar */}
         <form className="header-search" onSubmit={handleSearchSubmit}>
           <input
             type="text"
@@ -80,81 +73,80 @@ const Header = () => {
 
         {/* Right: Actions */}
         <div className="header-actions">
-          {/* ... (Lang Toggle, Wishlist, Cart - no changes) ... */}
-          <button
-            onClick={toggleLanguage}
-            className="header-action-btn lang-toggle"
-            aria-label="Toggle Language"
-          >
-            {i18n.language === 'en' ? 'বাংলা' : 'EN'}
-          </button>
+          
+          {/* 3. Use the new LanguageToggle component */}
+          <LanguageToggle className="header-action-btn" />
 
+          {/* Wishlist (Desktop) */}
           <NavLink
             to="/wishlist"
-            className="header-action-btn"
+            className="header-action-btn desktop-only"
             aria-label={t('header.wishlist')}
           >
             <FaHeart />
             <span className="badge">0</span>
           </NavLink>
 
+          {/* Cart (Desktop) */}
           <NavLink
             to="/cart"
-            className="header-action-btn"
+            className="header-action-btn desktop-only"
             aria-label={t('header.cart')}
           >
             <FaShoppingCart />
             <span className="badge">{cartCount}</span>
           </NavLink>
 
-          {/* Conditional User Profile/Login Button */}
-          {isAuthenticated ? (
-            <div className="profile-dropdown-container">
-              <button
-                onClick={() => setIsProfileOpen(!isProfileOpen)}
-                className="header-action-btn profile-btn"
-                aria-label="User Profile"
+          {/* User Profile (Desktop) */}
+          <div className="profile-dropdown-container desktop-only">
+            {isAuthenticated ? (
+              <>
+                <button
+                  onClick={() => setIsProfileOpen(!isProfileOpen)}
+                  className="header-action-btn profile-btn"
+                  aria-label="User Profile"
+                >
+                  <FaUser />
+                </button>
+                
+                {isProfileOpen && (
+                  <div className="profile-dropdown">
+                    <div className="profile-dropdown-header">
+                      Signed in as
+                      <strong>{user?.username || 'User'}</strong>
+                    </div>
+                    <ul className="profile-dropdown-list">
+                      <li>
+                        <NavLink to="/dashboard" onClick={() => setIsProfileOpen(false)}>
+                          <FaUser /> {t('auth_page.my_profile')}
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink to="/dashboard/orders" onClick={() => setIsProfileOpen(false)}>
+                          <FaBoxOpen /> {t('auth_page.my_orders')}
+                        </NavLink>
+                      </li>
+                      <li>
+                        <button onClick={handleLogout}>
+                          <FaSignOutAlt /> {t('auth_page.logout_button')}
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </>
+            ) : (
+              <NavLink
+                to="/login"
+                className="header-action-btn"
+                aria-label={t('header.profile')}
               >
                 <FaUser />
-              </button>
-              
-              {isProfileOpen && (
-                <div className="profile-dropdown">
-                  <div className="profile-dropdown-header">
-                    Signed in as
-                    <strong>{user?.username || 'User'}</strong>
-                  </div>
-                  <ul className="profile-dropdown-list">
-                    <li>
-                      <NavLink to="/dashboard" onClick={() => setIsProfileOpen(false)}>
-                        <FaUser /> {t('auth_page.my_profile')}
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/dashboard/orders" onClick={() => setIsProfileOpen(false)}>
-                        <FaBoxOpen /> {t('auth_page.my_orders')}
-                      </NavLink>
-                    </li>
-                    <li>
-                      <button onClick={handleLogout}>
-                        <FaSignOutAlt /> {t('auth_page.logout_button')}
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
-          ) : (
-            <NavLink
-              to="/login"
-              className="header-action-btn"
-              aria-label={t('header.profile')}
-            >
-              <FaUser />
-            </NavLink>
-          )}
+              </NavLink>
+            )}
+          </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Toggle (Hamburger) */}
           <button
             className="header-action-btn mobile-toggle"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

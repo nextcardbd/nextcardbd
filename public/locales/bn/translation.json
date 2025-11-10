@@ -144,6 +144,7 @@
     "verified_orders": "ভেরিফাইড অর্ডার",
     "pending_orders": "পেন্ডিং অর্ডার",
     "total_revenue": "মোট রাজস্ব",
+    "total_profit": "মোট লাভ",
     "view_all": "সব দেখুন",
     "order_id": "অর্ডার আইডি",
     "customer": "ক্রেতা",
@@ -191,6 +192,13 @@
     "faq_title": "সাধারণ জিজ্ঞাসা",
     "shipping_policy_title": "শিপিং পলিসি",
     "return_policy_title": "রিটার্ন ও রিফান্ড পলিসি"
+  },
+  "bottom_nav": {
+    "home": "হোম",
+    "categories": "ক্যাটাগরি",
+    "cart": "কার্ট",
+    "account": "অ্যাকাউন্ট",
+    "all_categories_title": "সকল ক্যাটাগরি"
   },
   "footer": {
     "about": "আমাদের সম্পর্কে",

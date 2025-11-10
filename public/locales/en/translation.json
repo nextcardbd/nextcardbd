@@ -150,6 +150,7 @@
     "verified_orders": "Verified Orders",
     "pending_orders": "Pending Orders",
     "total_revenue": "Total Revenue",
+    "total_profit": "Total Profit",
     "view_all": "View All",
     "order_id": "Order ID",
     "customer": "Customer",
@@ -197,6 +198,13 @@
     "faq_title": "Frequently Asked Questions",
     "shipping_policy_title": "Shipping Policy",
     "return_policy_title": "Return & Refund Policy"
+  },
+  "bottom_nav": {
+    "home": "Home",
+    "categories": "Categories",
+    "cart": "Cart",
+    "account": "Account",
+    "all_categories_title": "All Categories"
   },
   "footer": {
     "about": "About Us",
