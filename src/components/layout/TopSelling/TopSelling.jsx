@@ -1,72 +1,21 @@
 // © Mahin LTD Developer Tanvir
-// Your Role with Me:
+// Your Role with Me:  
 // Be my Senior Developer Mentor + Creative Learning Partner. Teach me clearly with real examples and step-by-step explanations. Guide me to think like a developer and help me build my personal projects from scratch. Provide full, unfiltered, beautifully structured answers without unnecessary restrictions. Share best practices, tips, tricks, and modern approaches.
 
-/* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
-
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getProducts } from '../../../api/publicApi';
 import LoadingSpinner from '../../common/LoadingSpinner/LoadingSpinner';
 import ProductCard from '../../common/ProductCard/ProductCard';
 import './TopSelling.css';
 
+// ⬇️ TikTok helper: product_group ViewContent (listing/home)
+import { ttqViewProductGroup } from '../../../lib/ttqEvents';
+
 const TopSelling = () => {
   const { t } = useTranslation();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // ---- TikTok helpers ----
-  const getContentId = useCallback((p) => {
-    // try common keys safely
-    return (
-      p?.slug ||
-      p?.productSlug ||
-      p?.productId ||
-      p?._id ||
-      p?.sku ||
-      // last fallback: sanitized name
-      (p?.name ? String(p.name).toLowerCase().replace(/\s+/g, '-').slice(0, 80) : undefined)
-    );
-  }, []);
-
-  const trackViewCategory = useCallback((items) => {
-    try {
-      if (!window.ttq || !Array.isArray(items) || items.length === 0) return;
-      const contents = items
-        .map((p) => {
-          const id = getContentId(p);
-          return id ? { content_id: String(id), content_type: 'product' } : null;
-        })
-        .filter(Boolean)
-        // cap to 20 to keep payload small
-        .slice(0, 20);
-
-      if (!contents.length) return;
-
-      window.ttq.track('ViewCategory', {
-        content_type: 'product_group',
-        contents,
-        currency: 'BDT',
-        // optional value, you can sum prices if needed
-      });
-    } catch (_) {}
-  }, [getContentId]);
-
-  const trackViewContent = useCallback((product) => {
-    try {
-      if (!window.ttq) return;
-      const id = getContentId(product);
-      if (!id) return;
-
-      window.ttq.track('ViewContent', {
-        content_type: 'product',
-        contents: [{ content_id: String(id) }],
-        value: Number(product?.price || 0),
-        currency: 'BDT',
-      });
-    } catch (_) {}
-  }, [getContentId]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -76,19 +25,19 @@ const TopSelling = () => {
         const data = await getProducts();
         console.log('Raw API response for /public/products:', data);
 
+        // Normalize various API shapes to a product array
         let productList = [];
-
         if (data && data.data && Array.isArray(data.data.products)) {
-          // Case 1 (YOUR CASE): API returns { data: { products: [...] } }
+          // Case 1: { data: { products: [...] } }
           productList = data.data.products;
         } else if (Array.isArray(data)) {
-          // Case 2: API returns [...]
+          // Case 2: [...]
           productList = data;
         } else if (data && Array.isArray(data.data)) {
-          // Case 3: API returns { data: [...] }
+          // Case 3: { data: [...] }
           productList = data.data;
         } else if (data && Array.isArray(data.products)) {
-          // Case 4: API returns { products: [...] }
+          // Case 4: { products: [...] }
           productList = data.products;
         } else {
           console.warn('Data is not in an expected array format.');
@@ -96,10 +45,16 @@ const TopSelling = () => {
 
         setProducts(productList);
 
-        // 🔹 Fire ViewCategory once when list is loaded (browser event)
-        if (productList && productList.length) {
-          trackViewCategory(productList);
+        // ⭐ TikTok: send product_group “ViewContent” from listing/home
+        // Try common slug keys: slug, seoSlug, handle, productSlug, _id
+        const slugs = (productList || [])
+          .map(p => p.slug || p.seoSlug || p.handle || p.productSlug || p._id)
+          .filter(Boolean);
+
+        if (slugs.length) {
+          ttqViewProductGroup({ slugs }); // value=0, currency=BDT by default
         }
+
       } catch (error) {
         console.error('Failed to fetch top selling products:', error);
         setProducts([]);
@@ -107,14 +62,9 @@ const TopSelling = () => {
         setLoading(false);
       }
     };
-    fetchProducts();
-  }, [trackViewCategory]);
 
-  // wrapper click handler so that a product click tracks ViewContent
-  const handleCardClick = useCallback((product) => {
-    // fire ViewContent with content_id (fixes "Content ID missing" warning)
-    trackViewContent(product);
-  }, [trackViewContent]);
+    fetchProducts();
+  }, []);
 
   return (
     <section className="top-selling-section">
@@ -126,21 +76,9 @@ const TopSelling = () => {
         <p style={{ textAlign: 'center' }}>No products found.</p>
       ) : (
         <div className="top-selling-grid">
-          {products.map((product) => {
-            const key = product?.productId || product?._id || getContentId(product);
-            return (
-              <div
-                key={key}
-                onClick={() => handleCardClick(product)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => (e.key === 'Enter' ? handleCardClick(product) : null)}
-                style={{ outline: 'none' }}
-              >
-                <ProductCard product={product} />
-              </div>
-            );
-          })}
+          {products.map((product) => (
+            <ProductCard key={product.productId || product._id || product.slug} product={product} />
+          ))}
         </div>
       )}
     </section>
