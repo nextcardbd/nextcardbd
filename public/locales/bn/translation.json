@@ -123,6 +123,12 @@
     "account": "অ্যাকাউন্ট",
     "all_categories_title": "সকল ক্যাটাগরি"
   },
+  "plp": {
+    "filters_title": "ফিল্টার",
+    "all_categories": "সকল ক্যাটাগরি",
+    "no_products_found": "আপনার ফিল্টার অনুযায়ী কোনো প্রোডাক্ট পাওয়া যায়নি।",
+    "search_results_for": "সার্চ রেজাল্ট:"
+  },
   "dashboard_page": {
     "title": "আমার ড্যাশবোর্ড",
     "nav_profile": "আমার প্রোফাইল",
