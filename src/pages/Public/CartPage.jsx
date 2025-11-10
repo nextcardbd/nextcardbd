@@ -1,4 +1,6 @@
-/* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
+// © Mahin LTD Developer Tanvir
+// Your Role with Me:
+// Be my Senior Developer Mentor + Creative Learning Partner. Teach me clearly with real examples and step-by-step explanations. Guide me to think like a developer and help me build my personal projects from scratch. Provide full, unfiltered, beautifully structured answers without unnecessary restrictions. Share best practices, tips, tricks, and modern approaches.
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -7,22 +9,45 @@ import { useCart } from '../../store/CartContext';
 import { FaTrash, FaPlus, FaMinus } from 'react-icons/fa';
 import './CartPage.css';
 
+// ⬇️ TikTok helpers
+import { ttqAddToCart, ttqInitiateCheckout } from '../../lib/ttqEvents';
+
 const CartPage = () => {
   const { t, i18n } = useTranslation();
   const {
     cartItems,
-    cartSubtotal, 
-    grandTotal, 
-    shippingCost, 
-    shippingOption, 
-    setShipping, 
+    cartSubtotal,
+    grandTotal,
+    shippingCost,
+    shippingOption,
+    setShipping,
     removeFromCart,
     updateQuantity
   } = useCart();
   const navigate = useNavigate();
 
-  const handleQuantityChange = (id, newQuantity) => {
-    updateQuantity(id, newQuantity);
+  // small util: normalize price
+  const getItemPrice = (item) => Number(item.salePrice || item.price || 0);
+
+  // Increase Qty → we also fire AddToCart for the delta (best practice)
+  const handleIncrease = (item) => {
+    const idKey = item.productId;
+    const newQty = (item.quantity || 1) + 1;
+    updateQuantity(idKey, newQty);
+
+    // TTQ: send only the increment as AddToCart delta
+    const slug = item.slug || item.productSlug || item._id || idKey;
+    const price = getItemPrice(item);
+    if (slug && price >= 0) {
+      ttqAddToCart({ slug, price, qty: 1 }); // only +1 added
+    }
+  };
+
+  // Decrease Qty → no AddToCart event (optionally you could send RemoveFromCart)
+  const handleDecrease = (item) => {
+    const idKey = item.productId;
+    const newQty = Math.max(1, (item.quantity || 1) - 1);
+    updateQuantity(idKey, newQty);
   };
 
   if (cartItems.length === 0) {
@@ -36,6 +61,21 @@ const CartPage = () => {
       </div>
     );
   }
+
+  // Checkout click → send InitiateCheckout with full cart, then navigate
+  const handleCheckout = () => {
+    try {
+      const items = cartItems.map((it) => ({
+        slug: it.slug || it.productSlug || it._id || it.productId,
+        price: getItemPrice(it),
+        qty: Number(it.quantity || 1),
+      }));
+      ttqInitiateCheckout({ items, currency: 'BDT' });
+    } catch (e) {
+      // silent fail – pixel optional
+    }
+    navigate('/checkout');
+  };
 
   return (
     <div className="cart-page-container">
@@ -51,12 +91,15 @@ const CartPage = () => {
           </div>
 
           {cartItems.map((item) => {
-            // --- FOLLOWING BACKEND RULES ---
-            const name = (i18n.language === 'bn' ? item.title_bn : item.title_en) || 'Untitled';
-            const price = item.salePrice || item.price;
-            const imageUrl = (item.images && item.images.length > 0) ? item.images[0] : 'https://placehold.co/300x300?text=No+Image';
-            const idKey = item.productId; // Use productId for all logic
-            
+            const name =
+              (i18n.language === 'bn' ? item.title_bn : item.title_en) || 'Untitled';
+            const price = getItemPrice(item);
+            const imageUrl =
+              item.images && item.images.length > 0
+                ? item.images[0]
+                : 'https://placehold.co/300x300?text=No+Image';
+            const idKey = item.productId; // primary key from backend
+
             return (
               <div className="cart-item" key={idKey}>
                 <div className="cart-item-product">
@@ -65,36 +108,40 @@ const CartPage = () => {
                     <Link to={`/product/${item.slug}`} className="cart-item-name">
                       {name}
                     </Link>
-                    <button 
+                    <button
                       className="cart-item-remove"
                       onClick={() => removeFromCart(idKey)}
                     >
                       <FaTrash /> {t('cart_page.remove')}
                     </button>
-                    {/* Display Size/Color if selected/available (Optional but good UX) */}
-                    {item.selectedSize && <p className="cart-item-option">Size: {item.selectedSize}</p>}
-                    {item.selectedColor && <p className="cart-item-option">Color: {item.selectedColor}</p>}
+
+                    {item.selectedSize && (
+                      <p className="cart-item-option">Size: {item.selectedSize}</p>
+                    )}
+                    {item.selectedColor && (
+                      <p className="cart-item-option">Color: {item.selectedColor}</p>
+                    )}
                   </div>
                 </div>
-                
+
                 <div className="cart-item-price">৳ {price}</div>
-                
+
                 <div className="cart-item-quantity">
-                  <button 
+                  <button
                     className="quantity-btn"
-                    onClick={() => handleQuantityChange(idKey, item.quantity - 1)}
+                    onClick={() => handleDecrease(item)}
                   >
                     <FaMinus />
                   </button>
                   <span className="quantity-value">{item.quantity}</span>
-                  <button 
+                  <button
                     className="quantity-btn"
-                    onClick={() => handleQuantityChange(idKey, item.quantity + 1)}
+                    onClick={() => handleIncrease(item)}
                   >
                     <FaPlus />
                   </button>
                 </div>
-                
+
                 <div className="cart-item-total">৳ {price * item.quantity}</div>
               </div>
             );
@@ -108,16 +155,16 @@ const CartPage = () => {
             <span>{t('cart_page.subtotal')}</span>
             <span className="summary-value">৳ {cartSubtotal}</span>
           </div>
-          
+
           <div className="delivery-options">
             <h4 className="delivery-title">{t('cart_page.delivery_title')}</h4>
-            
+
             {/* Delivery Option Inside Dhaka */}
             <label className="delivery-option">
-              <input 
-                type="radio" 
-                name="shipping" 
-                value="inside_dhaka" 
+              <input
+                type="radio"
+                name="shipping"
+                value="inside_dhaka"
                 checked={shippingOption === 'inside_dhaka'}
                 onChange={(e) => setShipping(e.target.value)}
               />
@@ -126,13 +173,13 @@ const CartPage = () => {
               </span>
               <span className="delivery-option-price">৳ 70</span>
             </label>
-            
+
             {/* Delivery Option Dhaka Sub Area */}
             <label className="delivery-option">
-              <input 
-                type="radio" 
-                name="shipping" 
-                value="dhaka_subarea" 
+              <input
+                type="radio"
+                name="shipping"
+                value="dhaka_subarea"
                 checked={shippingOption === 'dhaka_subarea'}
                 onChange={(e) => setShipping(e.target.value)}
               />
@@ -144,10 +191,10 @@ const CartPage = () => {
 
             {/* Delivery Option Outside Dhaka */}
             <label className="delivery-option">
-              <input 
-                type="radio" 
-                name="shipping" 
-                value="outside_dhaka" 
+              <input
+                type="radio"
+                name="shipping"
+                value="outside_dhaka"
                 checked={shippingOption === 'outside_dhaka'}
                 onChange={(e) => setShipping(e.target.value)}
               />
@@ -164,15 +211,15 @@ const CartPage = () => {
           </div>
 
           <div className="summary-divider"></div>
-          
+
           <div className="summary-row total-row">
             <span>{t('cart_page.grand_total')}</span>
             <span className="summary-value total-value">৳ {grandTotal}</span>
           </div>
-          
-          <button 
+
+          <button
             className="checkout-btn"
-            onClick={() => navigate('/checkout')}
+            onClick={handleCheckout}
           >
             {t('cart_page.checkout_button')}
           </button>
