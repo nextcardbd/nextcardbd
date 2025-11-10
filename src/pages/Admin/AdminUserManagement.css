@@ -1,0 +1,123 @@
+/* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
+
+.admin-user-management-container {
+    padding-bottom: 30px;
+}
+
+/* Re-using styles from other admin pages */
+.admin-page-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 30px;
+}
+.admin-error-message {
+    color: #d9534f;
+    background: #fef2f2;
+    padding: 15px;
+    border: 1px solid #d9534f;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.admin-table-wrapper {
+    overflow-x: auto;
+    background: var(--bg-white);
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+.admin-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+.admin-data-table thead th {
+    padding: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-light);
+    background: var(--bg-light-gray);
+    text-transform: uppercase;
+    border-bottom: 2px solid #e5e7eb;
+}
+.admin-data-table tbody td {
+    padding: 16px;
+    font-size: 15px;
+    color: var(--text-dark);
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: middle;
+}
+.admin-data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+.status-badge {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: capitalize;
+}
+.status-delivered { background: #d1fae5; color: #065f46; } /* Active */
+.status-cancelled { background: #fee2e2; color: #991b1b; } /* Disabled */
+
+.action-cell {
+    display: flex;
+    gap: 8px;
+}
+.action-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.edit-btn {
+    background: var(--accent-color);
+    color: white;
+}
+.edit-btn:hover {
+    background: #e69500;
+}
+.delete-btn {
+    background: #d9534f;
+    color: white;
+}
+.delete-btn:hover {
+    background: #c9302c;
+}
+
+/* Responsive Table */
+@media (max-width: 992px) {
+    .admin-data-table thead {
+        display: none;
+    }
+    .admin-data-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+    }
+    .admin-data-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        padding: 12px 15px;
+    }
+    .admin-data-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-right: 10px;
+        min-width: 100px;
+        text-align: left;
+    }
+    .admin-data-table td:last-child {
+        border-bottom: none;
+    }
+    .action-cell {
+        justify-content: flex-end;
+    }
+}

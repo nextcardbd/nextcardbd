@@ -1,0 +1,136 @@
+/* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
+
+.admin-sidebar {
+  width: 250px;
+  background: var(--text-dark); /* Dark background for professional feel */
+  color: var(--text-white);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 2000; /* High z-index */
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid #333;
+}
+.sidebar-header a {
+  font-family: var(--font-en);
+  font-size: 24px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--text-white);
+}
+.sidebar-header span {
+  color: var(--primary-color);
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 10px 0; /* Reduced top/bottom padding */
+  flex-grow: 1;
+}
+
+.sidebar-menu-item {
+    margin-bottom: 5px;
+}
+
+/* --- Main Menu Link (Button) Styles --- */
+.main-menu-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ccc;
+    padding: 12px 20px;
+    transition: all 0.2s ease;
+    border-radius: 6px;
+}
+.main-menu-link:hover {
+    background: #2d3748;
+    color: var(--text-white);
+}
+.main-menu-link.active {
+    background: var(--primary-color);
+    color: var(--text-white);
+    font-weight: 600;
+}
+
+.menu-icon-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.menu-chevron {
+    transition: transform 0.3s ease;
+}
+
+/* --- Submenu Styles (Accordion) --- */
+.submenu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    max-height: 0; /* Collapsed state */
+    transition: max-height 0.3s ease-out;
+    background: #1e2630; /* Slightly lighter dark background */
+    border-radius: 6px;
+    margin-top: 2px;
+}
+.submenu-list.open {
+    max-height: 500px; /* Expanded state */
+}
+
+.submenu-list li a {
+    display: block;
+    padding: 8px 20px 8px 50px; /* Increased left padding for nesting effect */
+    font-size: 15px;
+    color: #a0aec0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.submenu-list li a:hover {
+    color: var(--text-white);
+    background: #333c4d;
+}
+.submenu-list li a.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid #333;
+}
+.sidebar-footer button {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  color: #f67373; /* Logout red */
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+.sidebar-footer button:hover {
+  background: #2d3748;
+}
+
+/* Mobile Toggle - We will hide this sidebar on small screens later */

@@ -1,0 +1,48 @@
+/* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
+
+.related-products-section {
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+  padding-top: 40px;
+}
+
+/* Re-using the section-title from TopSelling.css */
+.section-title {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+.related-products-slider {
+  padding-bottom: 40px; /* Space for pagination/navigation */
+}
+
+/* Style for Swiper navigation arrows */
+.related-products-slider .swiper-button-next,
+.related-products-slider .swiper-button-prev {
+  color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.related-products-slider .swiper-button-next:after,
+.related-products-slider .swiper-button-prev:after {
+  font-size: 18px;
+  font-weight: 900;
+}

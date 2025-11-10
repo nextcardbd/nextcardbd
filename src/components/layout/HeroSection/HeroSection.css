@@ -1,0 +1,134 @@
+/* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
+
+.hero-section {
+  width: 100%;
+  padding: 60px 20px;
+  /* Gradient background from your brief */
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
+  color: var(--text-white);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.hero-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+/* 1. Left Content */
+.hero-content {
+  padding-right: 20px;
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.hero-tagline {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.hero-cta-button {
+  font-family: var(--font-en);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-color);
+  background: var(--text-white);
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Spring bounce hover from your brief */
+.hero-cta-button:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: #f4f4f4;
+}
+
+/* 2. Right Slider */
+.hero-slider {
+  width: 100%;
+  height: 100%;
+}
+
+.mySwiper {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.mySwiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Swiper pagination/navigation colors */
+.mySwiper .swiper-pagination-bullet-active {
+  background: var(--text-white);
+}
+.mySwiper .swiper-button-next,
+.mySwiper .swiper-button-prev {
+  color: var(--text-white);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+.mySwiper .swiper-button-next:hover,
+.mySwiper .swiper-button-prev:hover {
+  opacity: 1;
+}
+
+/* 3. Responsive */
+@media (max-width: 992px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .hero-content {
+    padding-right: 0;
+    text-align: center;
+  }
+  .hero-title {
+    font-size: 36px;
+  }
+  .hero-tagline {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 40px 15px;
+  }
+  .hero-title {
+    font-size: 28px;
+  }
+  .hero-tagline {
+    font-size: 14px;
+  }
+  .hero-cta-button {
+    font-size: 16px;
+    padding: 12px 24px;
+  }
+}

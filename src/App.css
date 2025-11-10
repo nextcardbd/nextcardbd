@@ -1,0 +1,21 @@
+/* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  /* flex: 1; 
+    This is the magic rule. 
+    It makes the main content area grow
+    to fill all available space, pushing
+    the footer to the bottom.
+  */
+  flex: 1;
+  width: 100%;
+  max-width: 1440px; /* Max width for large screens */
+  margin: 0 auto; /* Center the content */
+  padding: 20px;
+}

@@ -1,0 +1,191 @@
+/* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
+
+.footer {
+  background-color: var(--text-dark);
+  color: #a0aec0; /* Light gray text */
+  padding: 60px 20px 20px 20px;
+  position: relative;
+}
+
+.footer-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.footer-column {
+  font-family: inherit;
+}
+
+.footer-logo {
+  font-family: var(--font-en);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 16px;
+}
+
+.footer-logo span {
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.footer-column p {
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.footer-column h4 {
+  font-size: 18px;
+  color: var(--text-white);
+  margin-bottom: 24px;
+  font-weight: 600;
+  position: relative;
+}
+/* Underline effect for titles */
+.footer-column h4::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--primary-color);
+}
+
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column ul li {
+  margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+  color: #a0aec0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+  color: var(--text-white);
+  padding-left: 8px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 16px;
+}
+
+.social-icons a {
+  color: var(--text-white);
+  font-size: 22px;
+  transition: all 0.3s ease;
+}
+.social-icons a:hover {
+  color: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  max-width: 1440px;
+  margin: 40px auto 0 auto;
+  padding-top: 20px;
+  border-top: 1px solid #3d3d3d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.copyright {
+  font-size: 14px;
+  font-family: var(
+    --font-en
+  ); /* Copyright text often looks better in EN font */
+}
+
+.payment-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  flex-wrap: wrap; /* Added for smaller screens */
+}
+
+/* --- UPDATED STYLES --- */
+.payment-placeholder {
+  background: #2d3748;
+  color: white;
+  font-family: var(--font-en);
+  font-weight: 500;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.payment-placeholder.bkash {
+  background: #d72064;
+}
+.payment-placeholder.nagad {
+  background: #f6921e;
+}
+.payment-placeholder.rocket {
+  background: #8c2a92; /* Rocket color */
+}
+.payment-placeholder.bank {
+  background: #005f9e; /* Bank color */
+}
+.payment-placeholder.cod {
+  background: #34a853; /* COD color */
+}
+/* --- END OF UPDATES --- */
+
+/* Scroll to Top */
+.scroll-to-top {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+.scroll-to-top:hover {
+  background: #0a8a50;
+  transform: translateY(-5px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .footer-bottom {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .payment-icons {
+    justify-content: center; /* Center icons on mobile */
+  }
+}

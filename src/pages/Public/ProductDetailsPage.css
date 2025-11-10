@@ -1,0 +1,332 @@
+/* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
+
+.product-details-container {
+  padding: 20px 0;
+}
+
+/* 1. Main Info Section */
+.product-main-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+/* Image Gallery Styles */
+.product-image-gallery {
+  width: 100%;
+}
+.main-image-container {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--bg-white);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  margin-bottom: 16px;
+}
+.main-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.thumbnail-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+.thumbnail-item {
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #eee;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.thumbnail-item:hover {
+  border-color: var(--primary-color);
+  opacity: 0.8;
+}
+.thumbnail-item.active {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+.thumbnail-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-info-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-title {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+
+.product-price-details {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 20px;
+  font-family: var(--font-en);
+}
+.current-price-large {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+.old-price-large {
+  font-size: 24px;
+  color: var(--text-light);
+  text-decoration: line-through;
+}
+
+.product-availability {
+  font-size: 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.availability-label {
+  font-weight: 500;
+  color: var(--text-dark);
+}
+.stock-status {
+  font-weight: 600;
+  font-size: 14px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  color: white;
+}
+.in-stock {
+  background: var(--primary-color);
+}
+.out-of-stock {
+  background: #d9534f;
+}
+
+/* Delivery Info Dropdown Styles */
+.delivery-info-dropdown {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.delivery-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  cursor: pointer;
+  background: var(--bg-white);
+  border: none;
+  width: 100%;
+  font-family: inherit;
+}
+.delivery-info-header:hover {
+  background: var(--bg-light-gray);
+}
+.delivery-info-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+.delivery-arrow {
+  font-size: 14px;
+  color: var(--text-light);
+  transition: transform 0.3s ease;
+}
+.delivery-arrow.open {
+  transform: rotate(180deg);
+}
+.delivery-info-content {
+  padding: 16px;
+  background: var(--bg-light-gray);
+  border-top: 1px solid #e5e7eb;
+}
+.delivery-info-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.delivery-info-content th,
+.delivery-info-content td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.delivery-info-content th {
+  color: var(--text-dark);
+  font-weight: 500;
+}
+.delivery-info-content td {
+  color: var(--text-light);
+  font-family: var(--font-en);
+}
+.delivery-info-content tr:last-child td {
+  border-bottom: none;
+}
+
+/* Size/Color Option Styles */
+.product-options-group {
+  margin-bottom: 24px;
+}
+.option-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+  display: block;
+}
+.options-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #ddd;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.color-swatch:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+/* --- NEW: Active State --- */
+.color-swatch.active {
+  box-shadow: 0 0 0 3px var(--primary-color);
+  transform: scale(1.1);
+}
+
+.size-option-btn {
+  font-family: var(--font-en);
+  font-weight: 500;
+  border: 1px solid #ddd;
+  background: var(--bg-white);
+  color: var(--text-dark);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.size-option-btn:hover {
+  background: var(--bg-light-gray);
+  border-color: #bbb;
+}
+/* --- NEW: Active State --- */
+.size-option-btn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* --- NEW: Validation Error --- */
+.product-validation-error {
+  color: #d9534f;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.add-to-cart-btn-large {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 16px 24px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  max-width: 300px;
+  margin-top: 20px;
+}
+.add-to-cart-btn-large:hover {
+  background: #0a8a50;
+  transform: scale(1.03);
+}
+.add-to-cart-btn-large:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Tabs Section (Simplified) */
+.product-tabs-section {
+  margin-top: 60px;
+  border-top: 1px solid #eee;
+  padding-top: 40px;
+}
+.tab-headers {
+  display: flex;
+  border-bottom: 2px solid #eee;
+}
+.tab-btn {
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-light);
+  background: none;
+  border: none;
+  padding: 12px 20px;
+  position: relative;
+  bottom: -2px;
+}
+.tab-btn.active {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+}
+.tab-content {
+  padding: 30px 0;
+  min-height: 100px;
+}
+.tab-pane {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-light);
+}
+
+/* Related Products (handled by new component) */
+
+/* Responsive */
+@media (max-width: 768px) {
+  .product-main-info {
+    grid-template-columns: 1fr;
+  }
+  .product-title {
+    font-size: 24px;
+  }
+  .current-price-large {
+    font-size: 30px;
+  }
+  .add-to-cart-btn-large {
+    max-width: 100%;
+  }
+  .tab-btn {
+    font-size: 16px;
+    padding: 10px 12px;
+  }
+  .thumbnail-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

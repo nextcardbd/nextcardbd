@@ -1,0 +1,127 @@
+/* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
+
+.admin-dashboard-overview {
+  padding: 0 0 30px 0;
+}
+
+.admin-page-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 30px;
+}
+.admin-error-message {
+    color: #d9534f;
+    background: #fef2f2;
+    padding: 15px;
+    border: 1px solid #d9534f;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* 1. Stat Cards Grid (Desktop View) */
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.admin-stats-slider {
+    display: none;
+}
+
+/* --- FIX: Style for <a> tag acting as a stat-card --- */
+a.stat-card {
+  text-decoration: none;
+  color: inherit;
+}
+/* --- End of Fix --- */
+
+.stat-card {
+  background: var(--bg-white);
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  border-left: 5px solid transparent; 
+}
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.07);
+}
+.stat-card p {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+.stat-card h2 {
+  font-size: 28px;
+  font-weight: 700;
+  font-family: var(--font-en);
+}
+
+/* 2. Chart and Recent Orders */
+.admin-chart-area {
+  background: var(--bg-white);
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 30px;
+}
+.admin-chart-area h3,
+.admin-recent-orders h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-recent-orders {
+  background: var(--bg-white);
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.view-all-link {
+    font-size: 14px;
+    color: var(--secondary-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.view-all-link:hover {
+    text-decoration: underline;
+}
+
+/* --- Responsive Slider Logic --- */
+@media (max-width: 992px) {
+  .admin-stats-grid {
+    display: none; 
+  }
+  .admin-stats-slider {
+    display: block; 
+    padding-bottom: 30px;
+  }
+  .kpi-swiper {
+    padding-bottom: 30px; 
+  }
+  .kpi-swiper .swiper-pagination-bullet-active {
+    background: var(--primary-color);
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-page-title {
+    font-size: 26px;
+  }
+  .kpi-swiper {
+    width: 100%;
+  }
+}

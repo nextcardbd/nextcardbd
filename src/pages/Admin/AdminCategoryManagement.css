@@ -1,0 +1,156 @@
+/* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
+
+.admin-category-container {
+    padding-bottom: 30px;
+}
+.admin-page-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 30px;
+}
+.admin-section-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+/* --- Form Grid --- */
+.category-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.admin-form-card {
+    background: var(--bg-white);
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 24px;
+}
+.admin-form-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Re-using form styles */
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    background: var(--bg-white);
+}
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(11, 163, 96, 0.2);
+}
+.form-group input[name="slug"] {
+    background: #f4f4f4;
+    color: #777;
+}
+
+/* Re-using add button style */
+.add-new-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.add-new-btn:hover {
+    background: #0a8a50;
+}
+
+
+/* --- Category List Display --- */
+.category-list-container {
+    background: var(--bg-white);
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 24px;
+}
+.categories-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+.category-list-item {
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+.category-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: var(--bg-light-gray);
+    border-bottom: 1px solid #eee;
+}
+.category-item-header h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+.delete-btn {
+    background: none;
+    border: none;
+    color: #d9534f;
+    cursor: pointer;
+    font-size: 14px;
+}
+.delete-btn.sub {
+    font-size: 12px;
+    color: #aaa;
+}
+.delete-btn:hover {
+    color: #c9302c;
+}
+
+.subcategory-list-display {
+    list-style: none;
+    padding: 16px;
+}
+.subcategory-list-display li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #f9f9f9;
+}
+.subcategory-list-display li:last-child {
+    border-bottom: none;
+}
+.subcategory-list-display li span {
+    font-size: 15px;
+    color: var(--text-light);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .category-form-grid {
+        grid-template-columns: 1fr;
+    }
+}

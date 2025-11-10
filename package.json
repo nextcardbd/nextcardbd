@@ -1,0 +1,43 @@
+{
+  "name": "nexcartbd-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "© NextCartBD - Developed by Mahin Ltd (Tanvir). Bilingual eCommerce platform.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.7.4",
+    "chart.js": "^4.4.4",
+    "date-fns": "^2.30.0",
+    "framer-motion": "^11.2.12",
+    "i18next": "^23.11.5",
+    "i18next-browser-languagedetector": "^8.0.0",
+    "i18next-http-backend": "^2.6.2",
+    "prop-types": "^15.8.1",
+    "react": "^18.3.1",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.3.1",
+    "react-i18next": "^15.0.1",
+    "react-icons": "^5.3.0",
+    "react-router-dom": "^6.26.2",
+    "recharts": "^3.3.0",
+    "swiper": "^11.1.8"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.12",
+    "prettier": "^3.3.3",
+    "vite": "^7.2.0"
+  },
+  "author": "Mahin Ltd (Tanvir)"
+}

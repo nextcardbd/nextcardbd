@@ -1,0 +1,112 @@
+/* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
+
+.category-bar {
+  width: 100%;
+  background: var(--bg-white);
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  display: block;
+  
+  /* --- THIS IS THE FIX --- */
+  position: sticky;
+  top: 80px; /* Stick to the bottom of the 80px Header */
+  z-index: 999; /* Below header, above content */
+  /* --- END OF FIX --- */
+}
+
+.category-bar-loading {
+  width: 100%;
+  padding: 10px 0;
+  background: var(--bg-light-gray);
+  text-align: center;
+  color: var(--text-light);
+  font-family: var(--font-en);
+}
+
+.category-menu-list {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.category-menu-item {
+  position: relative;
+}
+
+.category-menu-item > a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-dark);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.category-menu-item:hover > a {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+.dropdown-icon {
+  font-size: 10px;
+  margin-left: 2px;
+}
+
+/* Mega Menu Popup (Desktop) */
+.mega-menu-popup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--bg-white);
+  border: 1px solid #e5e7eb;
+  border-top: 2px solid var(--primary-color);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  min-width: 220px;
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.category-menu-item:hover .mega-menu-popup {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.subcategory-popup-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.subcategory-popup-list li a {
+  display: block;
+  padding: 8px 12px;
+  font-size: 15px;
+  color: var(--text-light);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.subcategory-popup-list li a:hover {
+  background: var(--bg-light-gray);
+  color: var(--primary-color);
+  transform: translateX(5px);
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+  .category-bar {
+    display: none;
+  }
+}
