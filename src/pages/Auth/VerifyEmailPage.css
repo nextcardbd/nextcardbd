@@ -1,0 +1,61 @@
+/* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
+
+.verify-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 40px 20px;
+}
+
+.verify-box {
+  width: 100%;
+  max-width: 500px;
+  background: var(--bg-white);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.verify-icon {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+.verify-icon.success {
+  color: var(--primary-color);
+}
+.verify-icon.error {
+  color: #d9534f;
+}
+
+.verify-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+}
+
+.verify-box p {
+  font-size: 16px;
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.verify-login-btn {
+  background: var(--primary-color);
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.verify-login-btn:hover {
+  background: #0a8a50;
+  transform: scale(1.05);
+}

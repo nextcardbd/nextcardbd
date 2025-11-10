@@ -1,6 +1,6 @@
 /* © NextCardBD - Developed by Mahin Ltd (Tanvir) */
 
-import React, { useEffect, useState } from 'react'; // 1. Import useState
+import React, { useEffect, useState } from 'react';
 import { Routes, Route, useLocation, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './App.css';
@@ -13,7 +13,7 @@ import Footer from './components/layout/Footer/Footer';
 import MobileBottomNav from './components/layout/MobileBottomNav/MobileBottomNav';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import AdminProtectedRoute from './components/common/AdminProtectedRoute';
-import CategoryDrawer from './components/common/CategoryDrawer/CategoryDrawer'; // 2. Import Drawer
+import CategoryDrawer from './components/common/CategoryDrawer/CategoryDrawer';
 
 // --- Import Page Components ---
 import HomePage from './pages/Public/HomePage';
@@ -25,6 +25,7 @@ import LoginPage from './pages/Auth/LoginPage';
 import RegisterPage from './pages/Auth/RegisterPage';
 import OrderSuccessPage from './pages/Public/OrderSuccessPage';
 import UserDashboardPage from './pages/User/DashboardPage';
+import VerifyEmailPage from './pages/Auth/VerifyEmailPage'; // 1. Import
 
 // --- Import Static Pages ---
 import ContactPage from './pages/Public/ContactPage';
@@ -56,7 +57,8 @@ function ScrollToTop() {
 const PublicLayoutWrapper = () => {
   const location = useLocation();
   const { pathname } = location;
-  const isAuthPage = pathname === '/login' || pathname === '/register';
+  // 2. Add /verify-email to auth pages
+  const isAuthPage = pathname === '/login' || pathname === '/register' || pathname === '/verify-email';
 
   return (
     <>
@@ -68,8 +70,6 @@ const PublicLayoutWrapper = () => {
 
 function App() {
   const { i18n } = useTranslation();
-  
-  // 3. State for controlling the category drawer
   const [isCategoryDrawerOpen, setIsCategoryDrawerOpen] = useState(false);
   
   useEffect(() => {
@@ -88,7 +88,6 @@ function App() {
               <PublicLayoutWrapper />
               <main className="main-content"><Outlet /></main>
               <Footer />
-              {/* 4. Pass the click handler to the nav, render the drawer */}
               <MobileBottomNav onCategoryClick={() => setIsCategoryDrawerOpen(true)} />
               <CategoryDrawer 
                 isOpen={isCategoryDrawerOpen} 
@@ -105,6 +104,9 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/order-success" element={<OrderSuccessPage />} />
           
+          {/* --- 3. ADD VERIFY EMAIL ROUTE --- */}
+          <Route path="/verify-email" element={<VerifyEmailPage />} />
+          
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/shipping-policy" element={<ShippingPolicyPage />} />
@@ -120,7 +122,7 @@ function App() {
           />
         </Route>
 
-        {/* --- Admin Routes (Layout handles Header/Footer hiding) --- */}
+        {/* --- Admin Routes --- */}
         <Route path="/admin" element={<AdminLogin />} />
         <Route 
           path="/admin/dashboard" 

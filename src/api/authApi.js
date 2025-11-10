@@ -5,7 +5,6 @@ import apiService from './apiService';
 /**
  * Registers a new user.
  * API: POST /auth/register
- * @param {object} userData - { username, email, password }
  */
 export const registerUser = (userData) => {
   return apiService.post('/auth/register', userData);
@@ -14,8 +13,16 @@ export const registerUser = (userData) => {
 /**
  * Logs in a user.
  * API: POST /auth/login
- * @param {object} credentials - { email, password }
  */
 export const loginUser = (credentials) => {
   return apiService.post('/auth/login', credentials);
+};
+
+/**
+ * --- NEW FUNCTION ---
+ * Verifies the user's email using the token from the URL.
+ * API: GET /auth/verify-email/:token
+ */
+export const verifyEmailToken = (token) => {
+  return apiService.get(`/auth/verify-email/${token}`);
 };

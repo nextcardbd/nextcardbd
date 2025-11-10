@@ -66,6 +66,22 @@
   text-align: center;
 }
 
+/* --- NEW: Success Message Style --- */
+.auth-success-message {
+  text-align: center;
+  padding: 20px;
+  background: #d1fae5;
+  border: 1px solid #065f46;
+  color: #065f46;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.auth-success-icon {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+/* --- End of New Styles --- */
+
 .auth-submit-btn {
   background: var(--primary-color);
   color: white;

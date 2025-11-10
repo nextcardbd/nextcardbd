@@ -92,48 +92,42 @@
     "register_link": "Create one",
     "logout_button": "Logout",
     "my_profile": "My Profile",
-    "my_orders": "My Orders"
+    "my_orders": "My Orders",
+    "register_success": "Registration successful! Please check your email to verify your account."
   },
-  "order_success_page": {
-    "title": "Thank You For Your Order!",
-    "message": "Your order has been placed successfully. Our team will verify your payment and contact you soon.",
-    "order_id": "Your Order ID is:",
-    "back_to_home": "Back to Home"
+  "verification_page": {
+    "verifying": "Verifying your email...",
+    "success_title": "Email Verified!",
+    "success_message": "Your email has been successfully verified. You can now login.",
+    "error_title": "Verification Failed",
+    "error_message": "This verification link is invalid or has expired. Please try registering again.",
+    "login_button": "Back to Login",
+    "banner_title": "Please verify your email.",
+    "banner_resend_button": "Resend Verification Email",
+    "resend_success": "A new verification email has been sent.",
+    "resend_error": "Failed to send email. Please try again later."
   },
-  "plp": {
-    "filters_title": "Filters",
-    "all_categories": "All Categories",
-    "no_products_found": "No products found matching your criteria.",
-    "search_results_for": "Search results for:"
+  "static_pages": {
+    "contact_title": "Contact Us",
+    "contact_subtitle": "Get in touch with us. We are here to help you.",
+    "contact_form_title": "Send us a Message",
+    "form_name": "Your Name",
+    "form_email": "Your Email",
+    "form_subject": "Subject",
+    "form_message": "Message",
+    "form_send_button": "Send Message",
+    "contact_info_title": "Contact Information",
+    "contact_address": "Khulna, Bangladesh",
+    "faq_title": "Frequently Asked Questions",
+    "shipping_policy_title": "Shipping Policy",
+    "return_policy_title": "Return & Refund Policy"
   },
-  "dashboard_page": {
-    "title": "My Dashboard",
-    "nav_profile": "My Profile",
-    "nav_orders": "My Orders",
-    "nav_logout": "Logout",
-    "profile_title": "Profile Information",
-    "profile_update_button": "Update Profile",
-    "orders_title": "My Order History",
-    "order_id": "Order ID",
-    "order_date": "Date",
-    "order_amount": "Amount",
-    "order_status": "Status",
-    "order_action": "Action",
-    "order_view_details": "View Details",
-    "order_details_title": "Order Details",
-    "shipping_to": "Shipping To",
-    "summary_title": "Order Summary",
-    "items_in_order": "Items in this order",
-    "status_timeline": "Order Status Timeline",
-    "status_pending": "Pending",
-    "status_verified": "Verified",
-    "status_processing": "Processing",
-    "status_packaging": "Packaging",
-    "status_shipped": "Shipped",
-    "status_intransit": "In Transit",
-    "status_delivered": "Delivered",
-    "status_onhold": "On Hold",
-    "status_cancelled": "Cancelled"
+  "bottom_nav": {
+    "home": "Home",
+    "categories": "Categories",
+    "cart": "Cart",
+    "account": "Account",
+    "all_categories_title": "All Categories"
   },
   "admin_page": {
     "login_title": "Admin Panel Login",
@@ -183,28 +177,6 @@
     "desc_en": "Description (EN)",
     "desc_bn": "Description (BN)",
     "select_subcategory": "Select Subcategory"
-  },
-  "static_pages": {
-    "contact_title": "Contact Us",
-    "contact_subtitle": "Get in touch with us. We are here to help you.",
-    "contact_form_title": "Send us a Message",
-    "form_name": "Your Name",
-    "form_email": "Your Email",
-    "form_subject": "Subject",
-    "form_message": "Message",
-    "form_send_button": "Send Message",
-    "contact_info_title": "Contact Information",
-    "contact_address": "Khulna, Bangladesh",
-    "faq_title": "Frequently Asked Questions",
-    "shipping_policy_title": "Shipping Policy",
-    "return_policy_title": "Return & Refund Policy"
-  },
-  "bottom_nav": {
-    "home": "Home",
-    "categories": "Categories",
-    "cart": "Cart",
-    "account": "Account",
-    "all_categories_title": "All Categories"
   },
   "footer": {
     "about": "About Us",

@@ -86,48 +86,42 @@
     "register_link": "তৈরি করুন",
     "logout_button": "লগআউট",
     "my_profile": "আমার প্রোফাইল",
-    "my_orders": "আমার অর্ডার"
+    "my_orders": "আমার অর্ডার",
+    "register_success": "রেজিস্ট্রেশন সফল! অনুগ্রহ করে আপনার ইমেইল চেক করে অ্যাকাউন্ট ভেরিফাই করুন।"
   },
-  "order_success_page": {
-    "title": "আপনার অর্ডারের জন্য ধন্যবাদ!",
-    "message": "আপনার অর্ডারটি সফলভাবে প্লেস করা হয়েছে। আমাদের টিম আপনার পেমেন্ট ভেরিফাই করে শীঘ্রই আপনার সাথে যোগাযোগ করবে।",
-    "order_id": "আপনার অর্ডার আইডি:",
-    "back_to_home": "হোম পেজে ফিরে যান"
+  "verification_page": {
+    "verifying": "আপনার ইমেইল ভেরিফাই করা হচ্ছে...",
+    "success_title": "ইমেইল ভেরিফাইড!",
+    "success_message": "আপনার ইমেইল সফলভাবে ভেরিফাই করা হয়েছে। আপনি এখন লগইন করতে পারেন।",
+    "error_title": "ভেরিফিকেশন ব্যর্থ হয়েছে",
+    "error_message": "এই ভেরিফিকেশন লিঙ্কটি অবৈধ বা মেয়াদ শেষ হয়ে গেছে। অনুগ্রহ করে আবার রেজিস্ট্রেশন করার চেষ্টা করুন।",
+    "login_button": "লগইন পেজে ফিরে যান",
+    "banner_title": "অনুগ্রহ করে আপনার ইমেইল ভেরিফাই করুন।",
+    "banner_resend_button": "ভেরিফিকেশন ইমেইল আবার পাঠান",
+    "resend_success": "একটি নতুন ভেরিফিকেশন ইমেইল পাঠানো হয়েছে।",
+    "resend_error": "ইমেইল পাঠাতে ব্যর্থ। অনুগ্রহ করে কিছুক্ষণ পর আবার চেষ্টা করুন।"
   },
-  "plp": {
-    "filters_title": "ফিল্টার",
-    "all_categories": "সকল ক্যাটাগরি",
-    "no_products_found": "আপনার ফিল্টার অনুযায়ী কোনো প্রোডাক্ট পাওয়া যায়নি।",
-    "search_results_for": "সার্চ রেজাল্ট:"
+  "static_pages": {
+    "contact_title": "যোগাযোগ করুন",
+    "contact_subtitle": "আমাদের সাথে যোগাযোগ করুন। আমরা আপনাকে সাহায্য করার জন্য এখানে আছি।",
+    "contact_form_title": "আমাদের বার্তা পাঠান",
+    "form_name": "আপনার নাম",
+    "form_email": "আপনার ইমেইল",
+    "form_subject": "বিষয়",
+    "form_message": "বার্তা",
+    "form_send_button": "বার্তা পাঠান",
+    "contact_info_title": "যোগাযোগের তথ্য",
+    "contact_address": "খুলনা, বাংলাদেশ",
+    "faq_title": "সাধারণ জিজ্ঞাসা",
+    "shipping_policy_title": "শিপিং পলিসি",
+    "return_policy_title": "রিটার্ন ও রিফান্ড পলিসি"
   },
-  "dashboard_page": {
-    "title": "আমার ড্যাশবোর্ড",
-    "nav_profile": "আমার প্রোফাইল",
-    "nav_orders": "আমার অর্ডার",
-    "nav_logout": "লগআউট",
-    "profile_title": "প্রোফাইলের তথ্য",
-    "profile_update_button": "প্রোফাইল আপডেট করুন",
-    "orders_title": "আমার অর্ডারের ইতিহাস",
-    "order_id": "অর্ডার আইডি",
-    "order_date": "তারিখ",
-    "order_amount": "মোট মূল্য",
-    "order_status": "স্ট্যাটাস",
-    "order_action": "অ্যাকশন",
-    "order_view_details": "বিস্তারিত দেখুন",
-    "order_details_title": "অর্ডার ডিটেইলস",
-    "shipping_to": "শিপিং অ্যাড্রেস",
-    "summary_title": "অর্ডার সামারি",
-    "items_in_order": "এই অর্ডারের প্রোডাক্টসমূহ",
-    "status_timeline": "অর্ডার স্ট্যাটাস টাইমলাইন",
-    "status_pending": "পেন্ডিং",
-    "status_verified": "ভেরিফাইড",
-    "status_processing": "প্রসেসিং",
-    "status_packaging": "প্যাকেজিং",
-    "status_shipped": "শিপড",
-    "status_intransit": "ইন ট্রানজিট",
-    "status_delivered": "ডেলিভারড",
-    "status_onhold": "অন হোল্ড",
-    "status_cancelled": " বাতিল"
+  "bottom_nav": {
+    "home": "হোম",
+    "categories": "ক্যাটাগরি",
+    "cart": "কার্ট",
+    "account": "অ্যাকাউন্ট",
+    "all_categories_title": "সকল ক্যাটাগরি"
   },
   "admin_page": {
     "login_title": "অ্যাডমিন প্যানেল লগইন",
@@ -177,28 +171,6 @@
     "desc_en": "বিবরণ (EN)",
     "desc_bn": "বিবরণ (BN)",
     "select_subcategory": "সাবক্যাটাগরি সিলেক্ট করুন"
-  },
-  "static_pages": {
-    "contact_title": "যোগাযোগ করুন",
-    "contact_subtitle": "আমাদের সাথে যোগাযোগ করুন। আমরা আপনাকে সাহায্য করার জন্য এখানে আছি।",
-    "contact_form_title": "আমাদের বার্তা পাঠান",
-    "form_name": "আপনার নাম",
-    "form_email": "আপনার ইমেইল",
-    "form_subject": "বিষয়",
-    "form_message": "বার্তা",
-    "form_send_button": "বার্তা পাঠান",
-    "contact_info_title": "যোগাযোগের তথ্য",
-    "contact_address": "খুলনা, বাংলাদেশ",
-    "faq_title": "সাধারণ জিজ্ঞাসা",
-    "shipping_policy_title": "শিপিং পলিসি",
-    "return_policy_title": "রিটার্ন ও রিফান্ড পলিসি"
-  },
-  "bottom_nav": {
-    "home": "হোম",
-    "categories": "ক্যাটাগরি",
-    "cart": "কার্ট",
-    "account": "অ্যাকাউন্ট",
-    "all_categories_title": "সকল ক্যাটাগরি"
   },
   "footer": {
     "about": "আমাদের সম্পর্কে",
