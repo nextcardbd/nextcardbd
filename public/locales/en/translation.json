@@ -107,6 +107,13 @@
     "resend_success": "A new verification email has been sent.",
     "resend_error": "Failed to send email. Please try again later."
   },
+  "order_success_page": {
+    "title": "Thank You For Your Order!",
+    "message": "Your order has been placed successfully. Our team will verify your payment and contact you soon.",
+    "order_id": "Your Order ID is:",
+    "back_to_home": "Back to Home",
+    "confirmation_email": "A confirmation email has been sent to your registered email address."
+  },
   "static_pages": {
     "contact_title": "Contact Us",
     "contact_subtitle": "Get in touch with us. We are here to help you.",
