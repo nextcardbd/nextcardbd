@@ -154,6 +154,7 @@
     "status_packaging": "প্যাকেজিং",
     "status_shipped": "শিপড",
     "status_intransit": "ইন ট্রানজিট",
+    "status_outfordelivery": "ডেলিভারির জন্য বের হয়েছে",
     "status_delivered": "ডেলিভারড",
     "status_onhold": "অন হোল্ড",
     "status_cancelled": " বাতিল"
@@ -215,7 +216,7 @@
       "home": "হোম",
       "shop": "শপ",
       "cart": "কার্ট",
-      "contact": "যোগাযোগ করুন"
+      "contact": "যোগাযোগ"
     },
     "service": "সার্ভিস",
     "service_links": {
